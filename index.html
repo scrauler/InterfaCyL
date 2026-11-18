@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>InterfaCyL | El simulador más completo de Cifras y Letras para Android</title>
+
+<meta name="description" content="InterfaCyL es el simulador más completo de Cifras y Letras para Android. Pruebas automáticas y personalizadas, palabras de 10 letras, rankings, multijugador, solucionadores y mucho más.">
+
+<meta name="keywords" content="cifras y letras, juego de palabras, juego de números, anagramas, palabras de 10 letras, cálculo mental, diccionario español, vocabulario, juego educativo">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+--primary:#2563eb;
+--primary-dark:#1d4ed8;
+--secondary:#0f172a;
+--success:#22c55e;
+--light:#f8fafc;
+--gray:#64748b;
+--border:#e2e8f0;
+--card:#ffffff;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#ffffff;
+color:#1e293b;
+line-height:1.6;
+}
+
+.container{
+width:90%;
+max-width:1200px;
+margin:auto;
+}
+
+.hero{
+background:linear-gradient(135deg,#1d4ed8,#2563eb,#3b82f6);
+color:white;
+padding:100px 0;
+text-align:center;
+}
+
+.hero h1{
+font-size:4rem;
+font-weight:800;
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:1.3rem;
+max-width:850px;
+margin:auto;
+opacity:.95;
+}
+
+.buttons{
+margin-top:40px;
+}
+
+.btn{
+display:inline-block;
+padding:15px 30px;
+border-radius:12px;
+font-weight:700;
+text-decoration:none;
+margin:10px;
+transition:.3s;
+}
+
+.btn-primary{
+background:white;
+color:#2563eb;
+}
+
+.btn-primary:hover{
+transform:translateY(-2px);
+}
+
+.btn-secondary{
+background:rgba(255,255,255,.15);
+border:1px solid rgba(255,255,255,.3);
+color:white;
+}
+
+.stats{
+padding:60px 0;
+background:#f8fafc;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.stat{
+background:white;
+padding:25px;
+border-radius:16px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.05);
+}
+
+.stat h3{
+font-size:1.1rem;
+}
+
+section{
+padding:90px 0;
+}
+
+.section-title{
+text-align:center;
+font-size:2.5rem;
+margin-bottom:20px;
+font-weight:800;
+}
+
+.section-subtitle{
+text-align:center;
+color:var(--gray);
+max-width:800px;
+margin:0 auto 60px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(15,23,42,.06);
+border:1px solid var(--border);
+}
+
+.card h3{
+margin-bottom:15px;
+font-size:1.2rem;
+}
+
+.comparison{
+overflow-x:auto;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 10px 40px rgba(0,0,0,.05);
+}
+
+th{
+background:#1e3a8a;
+color:white;
+padding:18px;
+}
+
+td{
+padding:16px;
+border-bottom:1px solid #edf2f7;
+text-align:center;
+}
+
+tr:hover{
+background:#f8fafc;
+}
+
+.pro-section{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+}
+
+.pro-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+margin-top:40px;
+}
+
+.pro-card{
+background:rgba(255,255,255,.08);
+padding:25px;
+border-radius:16px;
+}
+
+.highlight{
+background:#eff6ff;
+}
+
+.feature-box{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:30px;
+}
+
+.large-card{
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 15px 40px rgba(0,0,0,.05);
+}
+
+.faq{
+max-width:1000px;
+margin:auto;
+}
+
+.faq-item{
+margin-bottom:25px;
+padding:25px;
+border:1px solid var(--border);
+border-radius:16px;
+background:white;
+}
+
+.faq-item h3{
+margin-bottom:10px;
+}
+
+.cta{
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+color:white;
+text-align:center;
+padding:90px 0;
+}
+
+.footer{
+background:#0f172a;
+color:#cbd5e1;
+padding:60px 0;
+}
+
+.footer-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+}
+
+.footer h3{
+color:white;
+margin-bottom:15px;
+}
+
+.footer a{
+color:#cbd5e1;
+text-decoration:none;
+display:block;
+margin-bottom:8px;
+}
+
+.badge{
+display:inline-block;
+background:#22c55e;
+padding:8px 16px;
+border-radius:999px;
+color:white;
+font-size:.9rem;
+margin-bottom:20px;
+font-weight:600;
+}
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:2.5rem;
+}
+
+.section-title{
+font-size:2rem;
+}
+
+}
+
+.play-badge{
+    width:280px;
+}
+
+.store-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap:50px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.store-item{
+    text-align:center;
+}
+
+.store-item h3{
+    color:white;
+    font-size:1.45rem;
+    font-weight:800;
+    letter-spacing:.3px;
+    margin-bottom:18px;
+}
+
+.play-badge{
+    width:240px;
+    height:auto;
+    display:block;
+    transition:transform .25s ease;
+}
+
+.play-badge:hover{
+    transform:translateY(-4px);
+}
+
+@media (max-width:768px){
+
+    .store-buttons{
+        flex-direction:column;
+        align-items:center;
+        gap:25px;
+    }
+
+    .play-badge{
+        width:220px;
+    }
+
+}
+
+
+</style>
+</head>
+<body>
+
+<section class="hero">
+
+<div class="container">
+
+
+<h1>InterfaCyL</h1>
+
+<p>
+El simulador más completo de Cifras y Letras para Android.
+Entrena vocabulario, cálculo mental y agilidad mental mediante pruebas automáticas y personalizadas inspiradas en el popular concurso de televisión.
+</p>
+
+<div class="store-buttons">
+
+    <div class="store-item">
+
+        <h3>InterfaCyL</h3>
+
+        <a href="https://play.google.com/store/apps/details?id=com.scrauler.interfacyl&hl=es"
+           target="_blank"
+           rel="noopener">
+
+            <img
+                src="GetItOnGooglePlay_Badge_Web_color_Spanish.svg"
+                alt="InterfaCyL en Google Play"
+                class="play-badge">
+
+        </a>
+
+    </div>
+
+    <div class="store-item">
+
+        <h3>InterfaCyL Pro</h3>
+
+        <a href="https://play.google.com/store/apps/details?id=com.scrauler&hl=es"
+           target="_blank"
+           rel="noopener">
+
+            <img
+                src="GetItOnGooglePlay_Badge_Web_color_Spanish.svg"
+                alt="InterfaCyL Pro en Google Play"
+                class="play-badge">
+
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="container">
+
+<div class="stats-grid">
+
+<div class="stat">
+<h3>✅ Palabras de hasta 10 letras</h3>
+</div>
+
+<div class="stat">
+<h3>✅ Diccionario actualizado</h3>
+</div>
+
+<div class="stat">
+<h3>✅ Sin anuncios</h3>
+</div>
+
+<div class="stat">
+<h3>✅ Actualizaciones incluidas</h3>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2 class="section-title">¿Por qué InterfaCyL?</h2>
+
+<p class="section-subtitle">
+Diseñado para aficionados y jugadores avanzados que desean disfrutar de la experiencia más completa de cifras y letras en Android.
+</p>
+
+<div class="cards">
+
+<div class="card">
+<h3>🎯 Simulación realista</h3>
+<p>
+Pruebas automáticas y personalizadas que reproducen la experiencia clásica de cifras y letras.
+</p>
+</div>
+
+<div class="card">
+<h3>📚 Diccionario integrado</h3>
+<p>
+Consulta definiciones y comprueba palabras de forma rápida y sencilla.
+</p>
+</div>
+
+<div class="card">
+<h3>🧠 Entrenamiento cerebral</h3>
+<p>
+Mejora vocabulario, concentración, memoria y cálculo mental.
+</p>
+</div>
+
+<div class="card">
+<h3>🏆 Competición</h3>
+<p>
+Participa en rankings semanales y mensuales para demostrar tu nivel.
+</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="highlight">
+
+<div class="container">
+
+<h2 class="section-title">Comparativa de versiones</h2>
+
+<div class="comparison">
+
+<table>
+
+<tr>
+<th>Función</th>
+<th>InterfaCyL</th>
+<th>InterfaCyL Pro</th>
+</tr>
+
+<tr>
+<td>Pruebas de cifras y letras automáticas</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Pruebas de cifras y letras personalizadas</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Palabras de 10 letras</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Consulta de definiciones</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Diccionario actualizado</td>
+<td>✅</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Generación de pruebas de cifras por nivel de dificultad</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Solucionador automático de letras</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Solucionador automático de cifras</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Dictado de pruebas para multijugador local</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Multijugador offline con dos niveles</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Multijugador online</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Ranking semanal</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Ranking mensual</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Estadísticas avanzadas</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+<tr>
+<td>Retos especiales</td>
+<td>❌</td>
+<td>✅</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="pro-section">
+
+<div class="container">
+
+<h2 class="section-title">InterfaCyL Pro</h2>
+
+<p class="section-subtitle" style="color:#cbd5e1">
+La experiencia definitiva para los apasionados de las pruebas de cifras y letras.
+</p>
+
+<div class="pro-grid">
+
+<div class="pro-card">🎯 Solucionador automático de letras</div>
+<div class="pro-card">🔢 Solucionador automático de cifras</div>
+<div class="pro-card">🎚️ Dificultad configurable en pruebas de cifras</div>
+<div class="pro-card">🎤 Dictado automático de pruebas</div>
+<div class="pro-card">👥 Multijugador local</div>
+<div class="pro-card">🌐 Multijugador online</div>
+<div class="pro-card">🏆 Ranking semanal</div>
+<div class="pro-card">🥇 Ranking mensual</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2 class="section-title">Características exclusivas</h2>
+
+<div class="feature-box">
+
+<div class="large-card">
+
+<h3>🎤 Juega sin mirar la pantalla</h3>
+
+<p>
+La versión Pro incorpora un sistema de dictado automático de pruebas que permite escuchar las letras, números y objetivos generados por la aplicación, creando una experiencia de juego local más cómoda y natural.
+</p>
+
+</div>
+
+<div class="large-card">
+
+<h3>🎚️ Entrena a tu nivel</h3>
+
+<p>
+Genera pruebas de cifras adaptadas a tu nivel de experiencia. Perfecto tanto para principiantes como para usuarios expertos que buscan el máximo desafío.
+</p>
+
+<p>
+🟢 Fácil<br>
+🔵 Medio<br>
+🔴 Difícil<br>
+⚫ Experto
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container">
+
+<h2 class="section-title">Preguntas frecuentes</h2>
+
+<div class="faq">
+
+<div class="faq-item">
+<h3>¿Necesito conexión a Internet?</h3>
+<p>La mayoría de modos pueden utilizarse sin conexión.</p>
+</div>
+
+<div class="faq-item">
+<h3>¿Puedo jugar las mismas pruebas que aparecen en televisión?</h3>
+<p>Sí. Puedes introducir manualmente las letras, números y objetivos para resolver exactamente las mismas pruebas.</p>
+</div>
+
+<div class="faq-item">
+<h3>¿Cuál es la diferencia entre InterfaCyL e InterfaCyL Pro?</h3>
+<p>La versión Pro añade solucionadores automáticos, multijugador, rankings, estadísticas, retos, dictado de pruebas y generación de dificultades.</p>
+</div>
+
+<div class="faq-item">
+<h3>¿Tengo que pagar cada cierto tiempo?</h3>
+<p>No. La compra de InterfaCyL Pro es un pago único. Tendrás acceso para siempre a todas las actualizaciones futuras sin coste adicional.</p>
+</div>
+
+<div class="faq-item">
+<h3>¿Tiene anuncios o compras dentro de la aplicación?</h3>
+<p>No. Ni InterfaCyL ni InterfaCyL Pro contienen anuncios, suscripciones ni compras integradas.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- VALORACIONES DE USUARIOS -->
+
+<section style="background:#f8fafc;">
+
+    <div class="container">
+
+        <div style="
+            max-width:850px;
+            margin:auto;
+            background:linear-gradient(135deg,#2563eb,#1d4ed8);
+            color:white;
+            padding:40px;
+            border-radius:24px;
+            text-align:center;
+            margin-bottom:60px;
+            box-shadow:0 20px 50px rgba(37,99,235,.25);
+        ">
+
+            <div style="
+                font-size:2.5rem;
+                color:#FFD700;
+                margin-bottom:10px;
+                letter-spacing:4px;
+            ">
+                ★★★★★
+            </div>
+
+            <h2 style="
+                margin-bottom:15px;
+                font-size:2rem;
+                color:white;
+            ">
+                Valorada por aficionados a las pruebas de cifras y letras
+            </h2>
+
+            <p style="
+                font-size:1.1rem;
+                opacity:.95;
+                max-width:700px;
+                margin:auto;
+            ">
+                Miles de partidas, miles de pruebas resueltas y una comunidad de jugadores que disfrutan entrenando vocabulario y cálculo mental cada día.
+            </p>
+
+        </div>
+
+        <h2 class="section-title">
+            Opiniones de nuestros jugadores
+        </h2>
+
+        <p class="section-subtitle">
+            Algunos ejemplos representativos de la experiencia que describen habitualmente los usuarios de InterfaCyL.
+        </p>
+
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+            gap:30px;
+            margin-top:50px;
+        ">
+
+            <!-- Testimonio 1 -->
+
+            <div style="
+                background:#fff;
+                padding:35px;
+                border-radius:20px;
+                box-shadow:0 15px 40px rgba(15,23,42,.08);
+                border:1px solid #e2e8f0;
+            ">
+
+                <div style="
+                    color:#FFD700;
+                    font-size:1.5rem;
+                    margin-bottom:15px;
+                ">
+                    ★★★★★
+                </div>
+
+                <h3 style="margin-bottom:15px;">
+                    3 de febrero de 2026
+                </h3>
+
+                <p style="color:#475569;">
+                    La mejor aplicación, con mucha diferencia, para disfrutar de este juego.
+                </p>
+
+                <div style="
+                    margin-top:25px;
+                    font-weight:600;
+                    color:#1e293b;
+                ">
+                    Álvaro Luque Borrego
+                </div>
+
+            </div>
+
+            <!-- Testimonio 2 -->
+
+            <div style="
+                background:#fff;
+                padding:35px;
+                border-radius:20px;
+                box-shadow:0 15px 40px rgba(15,23,42,.08);
+                border:1px solid #e2e8f0;
+            ">
+
+                <div style="
+                    color:#FFD700;
+                    font-size:1.5rem;
+                    margin-bottom:15px;
+                ">
+                    ★★★★★
+                </div>
+
+                <h3 style="margin-bottom:15px;">
+                    9 de enero de 2026
+                </h3>
+
+                <p style="color:#475569;">
+                    Fantástica aplicación. Imprescindible para aquellos que quieran prepararse para el Cifras y Letras de la tele y también muy recomendable para a los que simplemente les guste este juego y medir su nivel con otros jugadores.
+
+                </p>
+
+                <div style="
+                    margin-top:25px;
+                    font-weight:600;
+                    color:#1e293b;
+                ">
+                    Javier Lorenzo
+                </div>
+
+            </div>
+
+            <!-- Testimonio 3 -->
+
+            <div style="
+                background:#fff;
+                padding:35px;
+                border-radius:20px;
+                box-shadow:0 15px 40px rgba(15,23,42,.08);
+                border:1px solid #e2e8f0;
+            ">
+
+                <div style="
+                    color:#FFD700;
+                    font-size:1.5rem;
+                    margin-bottom:15px;
+                ">
+                    ★★★★★
+                </div>
+
+                <h3 style="margin-bottom:15px;">
+                    3 de febrero de 2026
+                </h3>
+
+                <p style="color:#475569;">
+                    No hay mejor forma de prepararse para ir a Cifras y Letras que esta aplicación. Las partidas online permiten pasar un rato estupendo y progresar considerablemente jugando contra otros usuarios de un nivel muy alto, muchos de ellos con una exitosa participación en el concurso de televisión. Además, desde la app es posible unirse a un grupo de Telegram muy activo en el que hay grandes ex concursantes. En definitiva, si os apasionan las cifras y las letras, este es vuestro juego.
+                </p>
+
+                <div style="
+                    margin-top:25px;
+                    font-weight:600;
+                    color:#1e293b;
+                ">
+                    Teodoro Martín Marchante Lago
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Bloque de confianza -->
+
+        <div style="
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+            margin-top:60px;
+        ">
+
+            <div style="
+                background:#fff;
+                padding:25px;
+                border-radius:16px;
+                text-align:center;
+                box-shadow:0 10px 25px rgba(0,0,0,.05);
+            ">
+                <h3>✅ Sin anuncios</h3>
+                <p>Disfruta de las pruebas sin interrupciones.</p>
+            </div>
+
+            <div style="
+                background:#fff;
+                padding:25px;
+                border-radius:16px;
+                text-align:center;
+                box-shadow:0 10px 25px rgba(0,0,0,.05);
+            ">
+                <h3>✅ Sin suscripciones</h3>
+                <p>La versión Pro es un único pago.</p>
+            </div>
+
+            <div style="
+                background:#fff;
+                padding:25px;
+                border-radius:16px;
+                text-align:center;
+                box-shadow:0 10px 25px rgba(0,0,0,.05);
+            ">
+                <h3>✅ Actualizaciones incluidas</h3>
+                <p>Todas las futuras actualizaciones están incluidas.</p>
+            </div>
+
+            <div style="
+                background:#fff;
+                padding:25px;
+                border-radius:16px;
+                text-align:center;
+                box-shadow:0 10px 25px rgba(0,0,0,.05);
+            ">
+                <h3>✅ Sin compras integradas</h3>
+                <p>No existen costes ocultos dentro de la aplicación.</p>
+            </div>
+
+        </div>
+
+        <div style="
+            margin-top:30px;
+            text-align:center;
+            color:#64748b;
+            font-size:.9rem;
+        ">
+            Los testimonios mostrados son ejemplos reales de opiniones de los usuarios.
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FIN VALORACIONES -->
+
+
+<section class="cta">
+
+<div class="container">
+
+<h2 style="font-size:3rem;margin-bottom:20px;">
+Empieza a jugar hoy
+</h2>
+
+<p style="max-width:700px;margin:auto;margin-bottom:35px;">
+Descubre por qué InterfaCyL es una de las experiencias más completas para los aficionados a las pruebas de cifras y letras.
+</p>
+
+
+<div class="store-buttons">
+
+    <div class="store-item">
+
+        <h3>InterfaCyL</h3>
+
+        <a href="https://play.google.com/store/apps/details?id=com.scrauler.interfacyl&hl=es"
+           target="_blank"
+           rel="noopener">
+
+            <img
+                src="GetItOnGooglePlay_Badge_Web_color_Spanish.svg"
+                alt="InterfaCyL en Google Play"
+                class="play-badge">
+
+        </a>
+
+    </div>
+
+    <div class="store-item">
+
+        <h3>InterfaCyL Pro</h3>
+
+        <a href="https://play.google.com/store/apps/details?id=com.scrauler&hl=es"
+           target="_blank"
+           rel="noopener">
+
+            <img
+                src="GetItOnGooglePlay_Badge_Web_color_Spanish.svg"
+                alt="InterfaCyL Pro en Google Play"
+                class="play-badge">
+
+        </a>
+
+    </div>
+
+</div>
+
+
+
+</div>
+
+</section>
+
+<footer class="footer">
+
+<div class="container">
+
+<div class="footer-grid">
+
+<div>
+<h3>InterfaCyL</h3>
+<p>
+El simulador más completo de Cifras y Letras para Android.
+</p>
+</div>
+
+<div>
+<h3>Características</h3>
+<a href="#">Pruebas de letras</a>
+<a href="#">Pruebas de cifras</a>
+<a href="#">Multijugador</a>
+<a href="#">Rankings</a>
+</div>
+
+<div>
+<h3>SEO</h3>
+<p>
+Cifras y Letras · Anagramas · Palabras de 10 letras · Juego de números · Juego de palabras · Diccionario español · Vocabulario · Cálculo mental.
+</p>
+</div>
+
+</div>
+
+<hr style="margin:40px 0;border:none;border-top:1px solid #334155;">
+
+<p style="text-align:center;">
+© 2026 InterfaCyL. Todos los derechos reservados.
+</p>
+
+</div>
+
+</footer>
+
+</body>
+</html>
